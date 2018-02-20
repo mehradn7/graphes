@@ -13,7 +13,16 @@ let separate v1 v2 =
       Mark.set v2 0
    end;;
 
-let contract g o a = [];;
+let contract g o a = 
+	begin
+		remove_edge g o a;
+		let voisins = succ g a in
+			List.iter (fun s -> begin remove_edge g a s;
+								add_edge g o s end;) [o;a];
+			remove_vertex g a;
+	voisins;
+	end;;
+			
 
 let insert g o a la = 
    begin
