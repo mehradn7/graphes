@@ -8,14 +8,19 @@ let associate v1 v2 =
 
 
 let separate v1 v2 = 
-	begin
-		Mark.set v1 0;
-		Mark.set v2 0
-	end;;
+   begin
+      Mark.set v1 0;
+      Mark.set v2 0
+   end;;
 
 let contract g o a = [];;
 
-let insert g o a la = ();;
+let insert g o a la = 
+   begin
+      add_vertex g a;
+      List.iter (fun n -> begin remove_edge g o n; add_edge g a n end) la;
+      add_edge g o a
+   end;;
 
 
 (*Section 2*)
