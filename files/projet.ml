@@ -1,6 +1,11 @@
 (*Section 1*)
 
-let associate v1 v2 = ();;
+let associate v1 v2 = 
+   begin
+      Mark.set v1 Vertex.indice(V.label v2);
+      Mark.set v2 Vertex.indice(V.label v1)
+   end;;
+
 
 let separate v1 v2 = ();;
 
