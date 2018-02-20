@@ -18,7 +18,7 @@ let contract g o a =
 		remove_edge g o a;
 		let voisins = succ g a in
 			List.iter (fun s -> begin remove_edge g a s;
-								add_edge g o s end;) [o;a];
+								add_edge g o s end;) voisins;
 			remove_vertex g a;
 	voisins;
 	end;;
