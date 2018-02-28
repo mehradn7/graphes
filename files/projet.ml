@@ -1,3 +1,5 @@
+(* Mehrad RAFII x Robin XAMBILI *)
+
 (*Section 1*)
 
 let associate v1 v2 = 
@@ -80,11 +82,13 @@ let rec contract_g2 g1 v1 g2 v2 h =
 	let (ch, l0, l1, l2) = distance_aux g1 v1 g2 v2 in
 	insert g2 v2 h la_g2;
 	(ch+1, l0, l1, (v2, h)::l2)
+
 and contract_g1 g1 v1 g2 v2 h = 
 	let la_g1= contract g1 v1 h in
 	let (ch, l0, l1, l2) = distance_aux g1 v1 g2 v2 in
 	insert g1 v1 h la_g1;
 	(ch+1, l0, (v1, h)::l1, l2)
+	
 and distance_aux g1 v1 g2 v2 = 
 	let s1 = unmarked (ordered_succ g1 v1) and s2 = unmarked (ordered_succ g2 v2) in
 	if s1 == [] && s2 == [] then
@@ -96,22 +100,26 @@ and distance_aux g1 v1 g2 v2 =
 	else
 		let h1 = List.hd s1 and h2 = List.hd s2 in
 		
+		(* Association *)
 		associate h1 h2;
 		let (ch,lh0,lh1,lh2) = distance_aux g1 h1 g2 h2 and
 		(cq,lq0,lq1,lq2) = distance_aux g1 v1 g2 v2 in
 		separate h1 h2;
-
+		
+		(* Contraction de g1 (v1,h1)*)
 		let (cg1,lg1_0,lg1_1,lg1_2) = contract_g1 g1 v1 g2 v2 h1 in
 
+		(* Contraction de g2 (v2,h2)*)
 		let (cg2,lg2_0,lg2_1,lg2_2) = contract_g2 g1 v1 g2 v2 h2 in
 
+		(* Calcul du minimum du nombre de contractions*)
 		let min_c = min (ch+cq) (min cg1 cg2) in
 		
-		if min_c == ch+cq then
+		if min_c == ch+cq then (* association *)
 			(ch+cq, ((h1,h2)::lh0)@lq0, lh1@lq1, lh2@lq2)
-		else if min_c == cg1 then
+		else if min_c == cg1 then (* contraction sur g1*)
 			(cg1, lg1_0, lg1_1, lg1_2)
-		else 
+		else  (* contraction sur g2 *)
 			(cg2, lg2_0, lg2_1, lg2_2)
 ;;
 

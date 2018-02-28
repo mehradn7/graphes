@@ -17,8 +17,8 @@ Mark.get obj1_2v2 == 0;;
 Mark.get obj1_1v3 == 0;;
 
 
-let copie_1 = copy obj1_1;;
-(*let copie_2 = copy obj1_2;;
+(*let copie_1 = copy obj1_1;;
+let copie_2 = copy obj1_2;;
 let copie_3 = copy obj1_3;;*)
 
 
