@@ -76,14 +76,14 @@ let equals g1 v1 g2 v2 =
 (*Section 3*)
 
 let rec contract_g2 g1 v1 g2 v2 h = 
-	let la= contract g2 v2 h in
+	let la_g2= contract g2 v2 h in
 	let (ch, l0, l1, l2) = distance_aux g1 v1 g2 v2 in
-	insert g2 v2 h la;
+	insert g2 v2 h la_g2;
 	(ch+1, l0, l1, (v2, h)::l2)
 and contract_g1 g1 v1 g2 v2 h = 
-	let la= contract g1 v1 h in
+	let la_g1= contract g1 v1 h in
 	let (ch, l0, l1, l2) = distance_aux g1 v1 g2 v2 in
-	insert g1 v1 h la;
+	insert g1 v1 h la_g1;
 	(ch+1, l0, (v1, h)::l1, l2)
 and distance_aux g1 v1 g2 v2 = 
 	let s1 = unmarked (ordered_succ g1 v1) and s2 = unmarked (ordered_succ g2 v2) in

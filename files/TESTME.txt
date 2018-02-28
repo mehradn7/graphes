@@ -1,0 +1,9 @@
+Comment lancer les tests :
+
+dans un terminal :
+ledit ocaml -I /usr/lib/ocaml/ocamlgraph/ skeleton.cma
+
+open Skeleton.Skeleton;;
+#use "affichageGraphes.ml";;
+#use "projet.ml";;
+#use "projettest.ml";;
