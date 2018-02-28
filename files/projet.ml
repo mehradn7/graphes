@@ -1,5 +1,4 @@
 (*Section 1*)
-#use "src/skeleton.ml";;
 
 let associate v1 v2 = 
    begin
@@ -74,9 +73,54 @@ let equals g1 v1 g2 v2 =
 
 (*Section 3*)
 
-let distance_aux g1 v1 g2 v2 = (0,[],[],[]);;
+let rec contract_g2 g1 v1 g2 v2 h = 
+	let la= contract g2 v2 h in
+	let (ch, l0, l1, l2) = distance_aux g1 v1 g2 v2 in
+	insert g2 v2 h la;
+	(ch+1, l0, l1, (v2, h)::l2)
+and contract_g1 g1 v1 g2 v2 h = 
+	let la= contract g1 v1 h in
+	let (ch, l0, l1, l2) = distance_aux g1 v1 g2 v2 in
+	insert g1 v1 h la;
+	(ch+1, l0, (v1, h)::l1, l2)
+and distance_aux g1 v1 g2 v2 = 
+	let s1 = unmarked (ordered_succ g1 v1) and s2 = unmarked (ordered_succ g2 v2) in
+	if s1 == [] && s2 == [] then
+		(0,[],[],[])
+	else if s1 == [] then 
+		contract_g2 g1 v1 g2 v2 (List.hd s2)
+	else if s2 == [] then
+		contract_g1 g1 v1 g2 v2 (List.hd s1)
+	else
+		let h1 = List.hd s1 and h2 = List.hd s2 in
+		
+		associate h1 h2;
+		let (ch,lh0,lh1,lh2) = distance_aux g1 h1 g2 h2 and
+		(cq,lq0,lq1,lq2) = distance_aux g1 v1 g2 v2 in
+		separate h1 h2;
 
-let distance g1 v1 g2 v2 = (0,[],[],[]);;
+		let (cg1,lg1_0,lg1_1,lg1_2) = contract_g1 g1 v1 g2 v2 h1 in
+
+		let (cg2,lg2_0,lg2_1,lg2_2) = contract_g2 g1 v1 g2 v2 h2 in
+
+		let min_c = min (ch+cq) (min cg1 cg2) in
+		
+		if min_c == ch+cq then
+			(ch+cq, ((h1,h2)::lh0)@lq0, lh1@lq1, lh2@lq2)
+		else if min_c == cg1 then
+			(cg1, lg1_0, lg1_1, lg1_2)
+		else 
+			(cg2, lg2_0, lg2_1, lg2_2)
+;;
+
+let distance g1 v1 g2 v2 = 
+	associate v1 v2;
+	let (c,l0,l1,l2) = distance_aux g1 v1 g2 v2 in
+	let l = (v1,v2)::l0 in
+	separate v1 v2;
+	(c,l,l1,l2);
+
+	;;
 
 
 (*Section 4*)

@@ -54,5 +54,9 @@ insert obj1_3 obj1_3v2 obj1_3v5 la3;;
 mem_vertex obj1_3 obj1_3v5;;
 mem_edge obj1_3 obj1_3v2 obj1_3v5;;
 
+(* Tests distance *)
 
+
+distance obj1_1 obj1_1v5 obj1_3 obj1_3v3;;
+distance obj1_1 obj1_1v5 obj1_2 obj1_2v4;;
 
