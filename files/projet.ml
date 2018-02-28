@@ -57,17 +57,19 @@ let rec equals_aux g1 v1 g2 v2 =
 						(bq,lq) = equals_aux g1 v1 g2 v2 in
 							separate h1 h2;
 							let lf = lh@lq in
-								(bh && bq,[h1]@[h2]@lf);
+								(bh && bq,(h1,h2)::lf);
 					end;;
 
 let equals g1 v1 g2 v2 = 
 	begin
 		associate v1 v2;
 		let (b,lr) = equals_aux g1 v1 g2 v2 in
-			let l = [v1]@[v2]@lr in
+			let l = (v1,v2)::lr in
 				separate v1 v2;
 				(b,l);
 	end;;
+		
+
 		
 
 
