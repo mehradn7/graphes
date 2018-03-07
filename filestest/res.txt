@@ -61,8 +61,20 @@ Evaluation de la distance non optimisée
 	1178615 appels récursifs
 Evaluation de la distance optimisée
 	Resultat obtenu
-	Distance : 0
-Distance optimisée non faite
+	Distance : 2
+		Mark     g1::5 g2::3
+		Mark     g1::2 g2::1
+		Mark     g1::6 g2::5
+		Mark     g1::3 g2::4
+		Mark     g1::7 g2::6
+		Mark     g1::4 g2::9
+		Mark     g1::9 g2::7
+		Mark     g1::8 g2::8
+		Mark     g1::10 g2::10
+		Contract g1::2 g1::1
+		Contract g2::1 g2::2
+	414 appels récursifs
+Amélioration lors du passage à la distance optimisée
 ok
 
 Evaluation de la distance non optimisée
@@ -80,7 +92,17 @@ Evaluation de la distance non optimisée
 	67725 appels récursifs
 Evaluation de la distance optimisée
 	Resultat obtenu
-	Distance : 0
-Distance optimisée non faite
+	Distance : 2
+		Mark     g1::3 g2::1
+		Mark     g1::2 g2::2
+		Mark     g1::4 g2::7
+		Mark     g1::6 g2::6
+		Mark     g1::5 g2::8
+		Mark     g1::8 g2::4
+		Mark     g1::7 g2::5
+		Contract g1::2 g1::1
+		Contract g2::2 g2::3
+	143 appels récursifs
+Amélioration lors du passage à la distance optimisée
 ok
 
