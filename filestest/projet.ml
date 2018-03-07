@@ -183,7 +183,7 @@ and distance_aux_opti g1 v1 g2 v2 nb_edit min_edit =
 		let (cg1,lg1_0,lg1_1,lg1_2) = contract_g1_opti g1 v1 g2 v2 h1 nb_edit new_min in
 
 		let new_min2 = 
-			if (cg1< c_min) then
+			if (cg1< c_min && cg1<ch+cq) then
 				(cg1, lg1_0, lg1_1, lg1_2)
 			else new_min in
 

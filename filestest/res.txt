@@ -73,7 +73,7 @@ Evaluation de la distance optimisée
 		Mark     g1::10 g2::10
 		Contract g1::2 g1::1
 		Contract g2::1 g2::2
-	414 appels récursifs
+	146 appels récursifs
 Amélioration lors du passage à la distance optimisée
 ok
 
@@ -102,7 +102,7 @@ Evaluation de la distance optimisée
 		Mark     g1::7 g2::5
 		Contract g1::2 g1::1
 		Contract g2::2 g2::3
-	143 appels récursifs
+	112 appels récursifs
 Amélioration lors du passage à la distance optimisée
 ok
 
