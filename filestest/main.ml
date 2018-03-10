@@ -69,8 +69,21 @@ mem_vertex obj1_3 obj1_3v5;;
 mem_edge obj1_3 obj1_3v1 obj1_3v5;;
 
 (* Tests distance et distance_opti *)
+let t1 = Sys.time ();;
 let (c1, l1_0, l1_1, l1_2) = distance obj1_1 obj1_1v5 obj1_3 obj1_3v3;;
+let t2 = Sys.time ();;
+t2-.t1;;
+
 c1 == 2;;
+
+let t1 = Sys.time ();;
+let (c1, l1_0, l1_1, l1_2) = distance_opti obj1_1 obj1_1v5 obj1_3 obj1_3v3;;
+let t2 = Sys.time ();;
+t2-.t1;;
+
+c1 == 2;;
+
+
 let (c2, l2_0, l2_1, l2_2) = distance obj1_1 obj1_1v5 obj1_2 obj1_2v4;;
 c2 == 0;;
 let (c3, l3_0, l3_1, l3_2) = distance obj2_1 obj2_1v3 obj2_2 obj2_2v1;;
@@ -80,8 +93,7 @@ c4 == 0;;
 let (c5, l5_0, l5_1, l5_2) = distance obj1_1 obj1_1v5 obj1_1 obj1_1v1;;
 c5 == 2;;
 
-let (c1, l1_0, l1_1, l1_2) = distance_opti obj1_1 obj1_1v5 obj1_3 obj1_3v3;;
-c1 == 2;;
+
 
 
 
